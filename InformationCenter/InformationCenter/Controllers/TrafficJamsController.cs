@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using InformationCenter.Models;
+using Microsoft.SqlServer.Types;
 
 namespace InformationCenter.Controllers
 {
@@ -126,11 +127,10 @@ namespace InformationCenter.Controllers
                 command.CommandText = "[dbo].[usp_addTrafficJam]";
                 command.Parameters.Add("degree", SqlDbType.Int).Value = jam.Degree;
                 command.Parameters.Add("street", SqlDbType.NVarChar).Value = jam.Street;
-                
-                // TODO: Find a way to initialize SQL GEOGRAPHY type
-                // command.Parameters.Add("startLocation", SqlDbType.Udt).Value = jam.StartLocation;
-                // command.Parameters.Add("endLocation", SqlDbType.Udt).Value = jam.EndLocation;
-                
+
+                command.Parameters.Add(this.ConstructSqlGeography("startLocation", jam.StartLocation));
+                command.Parameters.Add(this.ConstructSqlGeography("endLocation", jam.EndLocation));
+
                 command.Parameters.Add("returnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 
                 await command.ExecuteNonQueryAsync();
@@ -139,6 +139,18 @@ namespace InformationCenter.Controllers
 
                 return CreatedAtAction(nameof(Get), new { id = idd }, idd);
             }
-        } 
+        }
+        
+        private SqlParameter ConstructSqlGeography(string name, Location location)
+        {
+            var geo = SqlGeography.Point(location.Lattitude, location.Longitude, 4326);
+            var parameter = new SqlParameter();
+            parameter.ParameterName = name;
+            parameter.Value = geo;
+            parameter.SqlDbType = SqlDbType.Udt;
+            parameter.UdtTypeName = "Geography";
+
+            return parameter;
+        }
     }
 }

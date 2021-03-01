@@ -70,8 +70,47 @@ namespace InformationCenter.Controllers
         [HttpGet("{id}")]
         public async Task<TrafficJam> Get(int id)
         {
-            // TODO
-            return default(TrafficJam);
+            using (var connection = new SqlConnection(this.connectionString))
+            using (var command = new SqlCommand())
+            {
+                await connection.OpenAsync();
+
+                command.Connection = connection;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "[dbo].[usp_getTrafficJamById]";
+                command.Parameters.Add("id", SqlDbType.Int).Value = id;
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var jam = new TrafficJam();
+                    while (await reader.ReadAsync())
+                    {
+                        jam.Id = reader.GetInt32("Id");
+                        jam.Degree = reader.GetInt32("Degree");
+                        jam.Street = reader.GetString("Street");
+
+                        if (!reader.IsDBNull("StartLocationLong"))
+                        {
+                            jam.StartLocation = new Location
+                            {
+                                Longitude = reader.GetDouble("StartLocationLong"),
+                                Lattitude = reader.GetDouble("StartLocationLat")
+                            };
+                        }
+
+                        if (!reader.IsDBNull("EndLocationLong"))
+                        {
+                            jam.EndLocation = new Location
+                            {
+                                Longitude = reader.GetDouble("EndLocationLong"),
+                                Lattitude = reader.GetDouble("EndLocationLat")
+                            };
+                        }
+                    }
+
+                    return jam;
+                }
+            }
         }
 
         [HttpPost]

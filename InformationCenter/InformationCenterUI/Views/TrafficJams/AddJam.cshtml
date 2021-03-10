@@ -1,15 +1,15 @@
 ﻿@model TrafficJam
 
 
-
-
 <form asp-action="Add" asp-controller="TrafficJams" method="post">
-
-    <label>asp-for=@Model.Degree</label>
-    <input asp-for=@Model.Degree />
-    <label>asp-for=@Model.Street</label>
-    <input asp-for=@Model.Street />
-
-    <button type="submit">Add</button>
+    <div class=" form-group">
+        <label asp-for='@Model.Degree'></label>
+        <input class="form-control" asp-for='@Model.Degree' />
+    </div>
+    <div class=" form-group">
+        <label asp-for='@Model.Street'></label>
+        <input class="form-control" asp-for='@Model.Street' />
+    </div>
+        <button class="btn btn-success" type="submit">Add</button>
 
 </form>

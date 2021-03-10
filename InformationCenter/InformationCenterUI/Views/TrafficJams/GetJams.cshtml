@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TrafficJam>
+
+@foreach (var item in @Model)
+{
+    <div class=" row">
+        <div class=" col">@item.Degree</div>
+        <div class=" col">@item.Street</div>
+    </div>
+}
+
+

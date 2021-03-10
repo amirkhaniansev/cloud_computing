@@ -10,7 +10,7 @@ namespace InformationCenterUI.Controllers
 {
     public class TrafficJamsController : Controller
     {
-        TrafficJamClient client;
+        readonly TrafficJamClient client;
         public TrafficJamsController(TrafficJamClient client)
         {
             this.client = client;
@@ -21,13 +21,19 @@ namespace InformationCenterUI.Controllers
         }
         public IActionResult AddJam()
         {
-            return View();
+            return View(new TrafficJam ());
         }
         [HttpPost]
         public async Task<IActionResult> Add(TrafficJam jam)
         {
             await this.client.PostTrafficJam(jam);
-            return View("Succes");
+            return View("Success");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetJams()
+        {
+            IEnumerable<TrafficJam> jams = await this.client.GetTrafficJams();
+            return View("GetJams", jams);
         }
     }
 }

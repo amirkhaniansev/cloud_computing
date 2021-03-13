@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InformationCenter", "Inform
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InformationCenterDB", "InformationCenterDB\InformationCenterDB.sqlproj", "{3A5EBD6B-8138-4CC2-AD13-BBE69812B8F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationCenterUI", "InformationCenterUI\InformationCenterUI.csproj", "{C31A03C3-1AC0-44E2-94CD-3BD2538F06CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InformationCenterUI", "InformationCenterUI\InformationCenterUI.csproj", "{C31A03C3-1AC0-44E2-94CD-3BD2538F06CA}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CinemaDB", "CinemaDB\CinemaDB.sqlproj", "{8C3800A7-356F-44D4-8E8B-B0EB9286E897}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,12 @@ Global
 		{C31A03C3-1AC0-44E2-94CD-3BD2538F06CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C31A03C3-1AC0-44E2-94CD-3BD2538F06CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C31A03C3-1AC0-44E2-94CD-3BD2538F06CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3800A7-356F-44D4-8E8B-B0EB9286E897}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

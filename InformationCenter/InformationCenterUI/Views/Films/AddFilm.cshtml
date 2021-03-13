@@ -1,0 +1,23 @@
+﻿@model Film
+
+
+<form asp-action="Add" asp-controller="Films" method="post">
+    <div class=" form-group">
+        <label asp-for='@Model.Name'></label>
+        <input class="form-control" asp-for='@Model.Name' />
+    </div>
+    <div class=" form-group">
+        <label asp-for='@Model.Category'></label>
+        <input class="form-control" asp-for='@Model.Category' />
+    </div>
+    <div class=" form-group">
+        <label asp-for='@Model.Stars'></label>
+        <input class="form-control" asp-for='@Model.Stars' />
+    </div>
+    <div class=" form-group">
+        <label asp-for='@Model.Cinema'></label>
+        <input class="form-control" asp-for='@Model.Cinema' />
+    </div>
+    <button class="btn btn-success" type="submit">Add film</button>
+
+</form>

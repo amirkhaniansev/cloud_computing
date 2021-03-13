@@ -1,0 +1,10 @@
+﻿@model Film
+
+<form asp-action="GetFilmsByCinema" asp-controller="Films" method="get">
+    <div class=" form-group">
+        <label>Cinema</label>
+        <input class="form-control" asp-for='@Model.Cinema' />
+    </div>
+    <button class="btn btn-success" type="submit">Get films by cinema</button>
+
+</form>

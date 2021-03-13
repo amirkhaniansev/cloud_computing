@@ -1,0 +1,15 @@
+﻿@model Film
+@if(Model.Id == 0)
+ {
+    <label>Film not found.</label>
+ }
+else 
+{ 
+    <div class=" row">
+        <div class=" col">@Model.Id</div>
+        <div class=" col">@Model.Name</div>
+        <div class=" col">@Model.Category</div>
+        <div class=" col">@Model.Stars</div>
+        <div class=" col">@Model.Cinema</div>
+    </div>
+}

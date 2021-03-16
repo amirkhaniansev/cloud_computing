@@ -1,8 +1,10 @@
 ﻿using InformationCenterUI.HttpClients;
 using InformationCenterUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -64,6 +66,24 @@ namespace InformationCenterUI.Controllers
         {
             await this.client.DeleteFilmById(film.Id);
             return View("Success");
+        }
+        [HttpGet]
+        public IActionResult AddTrailer(int id)
+        {
+            ViewBag.Id = id;
+            return View("Trailer");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddTrailer(IFormFile trailerFile)
+        {
+            byte[] trailerFileContent;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                trailerFile.CopyTo(ms);
+                trailerFileContent = ms.ToArray();
+            }
+            await this.client.AddTrailer(2, trailerFileContent);
+            return View("Trailer");
         }
     }
 }

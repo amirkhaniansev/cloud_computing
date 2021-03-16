@@ -1,7 +1,8 @@
 ﻿using InformationCenterUI.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -94,6 +95,15 @@ namespace InformationCenterUI.HttpClients
                 return int.Parse(await result.Content.ReadAsStringAsync());
             }
             throw new Exception(await result.Content.ReadAsStringAsync());
+        }
+
+        public async Task AddTrailer(int id, byte[] content)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=webservicecoursestorage;AccountKey=kgF8aqe6mI/yQKycwg68HLPcNDVFhPlQlsgGMY6Vu4S9jjbQ5Z74tVGh7NSDMgTQNkXrd20xHZ8gB7G0ZibD3g==;EndpointSuffix=core.windows.net");
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("trailers");
+            CloudBlockBlob blob = container.GetBlockBlobReference(id.ToString() + "film");
+            await blob.UploadFromByteArrayAsync(content, 0, content.Length);
         }
     }
 }

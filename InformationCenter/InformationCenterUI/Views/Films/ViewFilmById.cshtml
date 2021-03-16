@@ -1,10 +1,10 @@
 ﻿@model Film
-@if(Model.Id == 0)
- {
+@if (Model.Id == 0)
+{
     <label>Film not found.</label>
- }
-else 
-{ 
+}
+else
+{
     <div class=" row">
         <div class=" col">@Model.Id</div>
         <div class=" col">@Model.Name</div>
@@ -12,4 +12,5 @@ else
         <div class=" col">@Model.Stars</div>
         <div class=" col">@Model.Cinema</div>
     </div>
+    <a class="btn btn-primary" asp-action="AddTrailer" asp-controller="Films" asp-route-id="@Model.Id">Add Trailer</a>
 }

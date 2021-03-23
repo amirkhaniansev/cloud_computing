@@ -82,7 +82,7 @@ namespace InformationCenterUI.Controllers
                 trailerFile.CopyTo(ms);
                 trailerFileContent = ms.ToArray();
             }
-            await this.client.AddTrailer(2, trailerFileContent);
+            await this.client.AddTrailer(1, trailerFileContent);
             return View("Trailer");
         }
     }

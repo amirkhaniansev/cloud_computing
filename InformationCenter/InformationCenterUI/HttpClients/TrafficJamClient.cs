@@ -13,7 +13,6 @@ namespace InformationCenterUI.HttpClients
         public readonly HttpClient client;
         public TrafficJamClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://informationcenter.azurewebsites.net/api/");
             this.client = client;
         }
         public async Task<int> PostTrafficJam(TrafficJam jam)

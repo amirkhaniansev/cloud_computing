@@ -1,4 +1,4 @@
-﻿namespace InformationCenter.Models
+﻿namespace FilmsAPI.Models
 {
     public class Film
     {

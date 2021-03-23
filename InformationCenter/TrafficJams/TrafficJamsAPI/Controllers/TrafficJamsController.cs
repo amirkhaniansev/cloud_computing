@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using InformationCenter.Models;
+using TrafficJamsAPI.Models;
 using Microsoft.SqlServer.Types;
 
 namespace InformationCenter.Controllers
@@ -17,7 +17,7 @@ namespace InformationCenter.Controllers
 
         public TrafficJamsController(IConfiguration configuration)
         {
-            this.connectionString = configuration.GetConnectionString("InformationCenter");
+            this.connectionString = configuration.GetConnectionString("TrafficJamsDB");
         }
 
         [HttpGet]

@@ -1,12 +1,10 @@
-﻿using InformationCenter.Models;
+﻿using FilmsAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InformationCenter.Controllers
@@ -18,7 +16,7 @@ namespace InformationCenter.Controllers
         private readonly string connectionString;
         public FilmsController(IConfiguration configuration)
         {
-            this.connectionString = configuration.GetConnectionString("InformationCenterFilms");
+            this.connectionString = configuration.GetConnectionString("CinemaDB");
         }
 
         [HttpGet]

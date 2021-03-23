@@ -1,4 +1,4 @@
-﻿namespace InformationCenter.Models
+﻿namespace TrafficJamsAPI.Models
 {
     public struct Location
     {

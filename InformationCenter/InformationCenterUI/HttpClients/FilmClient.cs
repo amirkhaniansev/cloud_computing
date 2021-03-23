@@ -15,7 +15,6 @@ namespace InformationCenterUI.HttpClients
         public readonly HttpClient client;
         public FilmClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://informationcenter.azurewebsites.net/api/");
             this.client = client;
         }
         public async Task<int> PostFilm(Film film)
@@ -104,6 +103,7 @@ namespace InformationCenterUI.HttpClients
             CloudBlobContainer container = blobClient.GetContainerReference("trailers");
             CloudBlockBlob blob = container.GetBlockBlobReference(id.ToString() + "film");
             await blob.UploadFromByteArrayAsync(content, 0, content.Length);
+            var url = blob.Uri.ToString();
         }
     }
 }

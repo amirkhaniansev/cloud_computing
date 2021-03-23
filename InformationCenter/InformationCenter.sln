@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TrafficJams", "TrafficJams"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrafficJamsAPI", "TrafficJams\TrafficJamsAPI\TrafficJamsAPI.csproj", "{6EEE8C3A-A44A-4A3B-9637-59649928C8E6}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrafficJamsDB", "TrafficJams\InformationCenterDB\TrafficJamsDB.sqlproj", "{3A5EBD6B-8138-4CC2-AD13-BBE69812B8F2}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrafficJamsDB", "TrafficJams\TrafficJamsDB\TrafficJamsDB.sqlproj", "{3A5EBD6B-8138-4CC2-AD13-BBE69812B8F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

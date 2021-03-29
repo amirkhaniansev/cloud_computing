@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using LivescoreDAL.Configurations;
 using LivescoreDAL.Parameters;
+using LivescoreDAL.Models;
 
 namespace LivescoreDAL.Database
 {
@@ -11,6 +12,24 @@ namespace LivescoreDAL.Database
         private readonly bool isTest;
         private readonly string databaseName;
         private readonly string connectionString;
+
+        public DbSet<Competition> Competitions { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+
+        public DbSet<Match> Matches { get; set; }
+
+        public DbSet<Player> Players { get; set; }
+
+        public DbSet<Season> Seasons { get; set; }
+
+        public DbSet<SeasonTeam> SeasonTeams { get; set; }
+
+        public DbSet<Sport> Sports { get; set; }
+
+        public DbSet<Team> Teams { get; set; }
 
         public LivescoreContext(DatabaseConfiguration configuration) :
             this(configuration.IsTest, configuration.DatabaseName, configuration.ConnectionString)

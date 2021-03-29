@@ -27,6 +27,7 @@ namespace InformationCenterUI
             services.AddControllersWithViews();
             services.AddHttpClient<TrafficJamClient>(client => client.BaseAddress = new Uri(Configuration["APIs:TrafficJamsBaseUrl"]));
             services.AddHttpClient<FilmClient>(client => client.BaseAddress = new Uri(Configuration["APIs:FilmsBaseUrl"]));
+            services.AddHttpClient<SurveyClient>(client => client.BaseAddress = new Uri(Configuration["APIs:SalariesSurveyBaseUrl"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ using LivescoreDAL.Parameters;
 
 namespace LivescoreDAL.Database
 {
-    internal class BaseDAL : Disposable, IBaseDAL
+    internal abstract class BaseDAL : Disposable, IBaseDAL
     {
         private readonly bool isTest;
         private readonly string databaseName;
@@ -29,6 +29,7 @@ namespace LivescoreDAL.Database
             this.isTest = configuration.IsTest;
             this.databaseName = configuration.DatabaseName;
             this.connectionString = configuration.ConnectionString;
+            this.parent = parent;
             this.dbContext = parent != null ? parent.GetContext() : new LivescoreContext(configuration);
         }
 
@@ -44,6 +45,16 @@ namespace LivescoreDAL.Database
         public async Task<TEntity> Find<TEntity>(params object[] keys) where TEntity : class
         {
             return await this.dbContext.FindAsync<TEntity>(keys);
+        }
+
+        public void Update<TEntity>(TEntity entity) where TEntity : class
+        {
+            this.dbContext.Update(entity);
+        }
+
+        public void Delete<TEntity>(TEntity entity) where TEntity : class
+        {
+            _ = this.dbContext.Remove(entity);
         }
 
         public async Task Save()

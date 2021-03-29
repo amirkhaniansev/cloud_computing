@@ -13,6 +13,10 @@ namespace LivescoreDAL.Description
 
         Task<TEntity> Find<TEntity>(params object[] keys) where TEntity : class;
 
+        void Update<TEntity>(TEntity entity) where TEntity : class;
+
+        void Delete<TEntity>(TEntity entity) where TEntity : class;
+
         DatabaseFacade GetFacade();
 
         LivescoreContext GetContext();

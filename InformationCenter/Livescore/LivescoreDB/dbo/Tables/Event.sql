@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[Event]
 (
 	[Id]		BIGINT		NOT NULL	IDENTITY (1, 1),
+	[Created]	DATETIME	NOT NULL,
+	[Modified]	DATETIME	NOT NULL,
 	[MatchId]	BIGINT		NOT NULL,
 	[TeamId]	INT		NOT NULL,
 	[Type]		SMALLINT	NOT NULL,

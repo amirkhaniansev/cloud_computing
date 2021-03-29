@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Sport]
+(
+	[Id]			INT		NOT NULL	IDENTITY(1, 1),
+	[Created]		DATETIME	NOT NULL,
+	[Modified]		DATETIME	NOT NULL,
+	[OriginCountryId]	INT		NULL,
+	[Name]			NVARCHAR(255)	NOT NULL,
+	[LogoURL]		NVARCHAR(4000)	NULL,
+	
+	CONSTRAINT [PK_SPORT_ID]		PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_SPORT_COUNTRY_ID]	FOREIGN KEY ([OriginCountryId]) REFERENCES [dbo].[Country]([Id])
+)

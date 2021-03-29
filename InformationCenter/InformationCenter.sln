@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Livescore", "Livescore", "{
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LivescoreDB", "Livescore\LivescoreDB\LivescoreDB.sqlproj", "{E278E289-543E-4C71-94DF-1A508EE7D469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivescoreDAL", "Livescore\LivescoreDAL\LivescoreDAL.csproj", "{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{E278E289-543E-4C71-94DF-1A508EE7D469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E278E289-543E-4C71-94DF-1A508EE7D469}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E278E289-543E-4C71-94DF-1A508EE7D469}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{6EEE8C3A-A44A-4A3B-9637-59649928C8E6} = {CAAC3E31-D3A5-43E1-BDE3-3E952BDAAA8C}
 		{3A5EBD6B-8138-4CC2-AD13-BBE69812B8F2} = {CAAC3E31-D3A5-43E1-BDE3-3E952BDAAA8C}
 		{E278E289-543E-4C71-94DF-1A508EE7D469} = {EA619D7A-7081-4024-B16D-53AB3AAB32DB}
+		{5F8217D6-A6B3-4781-A9BA-D66FDE853CCC} = {EA619D7A-7081-4024-B16D-53AB3AAB32DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {696173E9-9804-4EE4-A7FA-2CB785CD37F5}

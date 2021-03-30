@@ -7,6 +7,7 @@
         public const string InternalError = "Internal unknown error occured.";
         public const string CompetitionNotFound = "No competition is found.";
         public const string CountryNotFound = "No country is found.";
-        public const string SportNotFound = "No sport is found."
+        public const string CountryExists = "This country already exists.";
+        public const string SportNotFound = "No sport is found.";
     }
 }

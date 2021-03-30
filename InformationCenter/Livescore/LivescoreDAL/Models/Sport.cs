@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public int OriginCountryId { get; set; }
+        public int? OriginCountryId { get; set; }
 
         public string Name { get; set; }
 

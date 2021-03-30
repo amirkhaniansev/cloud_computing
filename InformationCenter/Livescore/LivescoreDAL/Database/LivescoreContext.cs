@@ -50,6 +50,8 @@ namespace LivescoreDAL.Database
 
             try
             {
+                transaction = await this.Database.BeginTransactionAsync();
+
                 await this.SaveChangesAsync();
                 if (transaction != null)
                     await transaction.CommitAsync();

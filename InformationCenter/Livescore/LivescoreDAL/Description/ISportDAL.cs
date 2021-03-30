@@ -23,6 +23,8 @@ namespace LivescoreDAL.Description
 
         void DeleteCountry(Country country);
 
+        Task<Competition> AddCompetition(Competition competition);
+
         Task<List<Competition>> GetCompetitions(CompetitionSearcher filter);
 
         void UpdateCompetition(Competition competition);

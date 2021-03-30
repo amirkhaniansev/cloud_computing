@@ -20,9 +20,6 @@ namespace LivescoreDAL.Database
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
 
-            if (string.IsNullOrEmpty(configuration.DatabaseName))
-                throw new ArgumentException(nameof(configuration.DatabaseName));
-
             if (string.IsNullOrEmpty(configuration.ConnectionString))
                 throw new ArgumentException(nameof(configuration.ConnectionString));
 

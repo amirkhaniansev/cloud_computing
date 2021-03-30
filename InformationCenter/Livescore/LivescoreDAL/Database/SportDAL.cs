@@ -16,6 +16,11 @@ namespace LivescoreDAL.Database
         {
         }
 
+        public Task<Competition> AddCompetition(Competition competition)
+        {
+            return this.Add(competition);
+        }
+
         public Task<Country> AddCountry(Country country)
         {
             return this.Add(country);

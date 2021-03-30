@@ -15,7 +15,7 @@ namespace InformationCenterUI.HttpClients
         {
             this.client = client;
         }
-        public async Task<int> PostSalaryRecord(SalaryRecord salary)
+        public async Task<int> AddSalaryRecord(SalaryRecord salary)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {

@@ -28,7 +28,7 @@ namespace InformationCenterUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(SalaryRecord record)
         {
-            await this.client.PostSalaryRecord(record);
+            await this.client.AddSalaryRecord(record);
             return View("Success");
         }
 
@@ -36,7 +36,7 @@ namespace InformationCenterUI.Controllers
         public async Task<IActionResult> GetSalaryRecords()
         {
             List<SalaryRecord> salaries = await this.client.GetSalaryRecords();
-            return View("GetSalaryRecord", salaries);
+            return View("GetSalaryRecords", salaries);
         }
 
         public IActionResult GetSalaryRecordById()

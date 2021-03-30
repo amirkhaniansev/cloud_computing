@@ -5,5 +5,6 @@
         public const string Competition = "api/competition";
         public const string Country = "api/country";
         public const string Sport = "api/sport";
+        public const string Team = "api/team"
     }
 }

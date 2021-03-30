@@ -9,5 +9,7 @@
         public const string CountryNotFound = "No country is found.";
         public const string CountryExists = "This country already exists.";
         public const string SportNotFound = "No sport is found.";
+        public const string TeamNotFound = "No team is found.";
+        public const string TeamExists = "This team already exists.";
     }
 }

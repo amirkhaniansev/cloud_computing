@@ -29,7 +29,7 @@ namespace SalariesSurveyAPI.Controllers
 
             command.Connection = connection;
             command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "[dbo].[usp_getSalaryRecords]";
+            command.CommandText = "[dbo].[usp_GetSalaries]";
 
             using var reader = await command.ExecuteReaderAsync();
             var list = new List<SalaryRecord>();
@@ -59,12 +59,12 @@ namespace SalariesSurveyAPI.Controllers
 
             command.Connection = connection;
             command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "[dbo].[usp_addSalaryRecord]";
-            // command.Parameters.Add("CreationDate", SqlDbType.DateTime).Value = record.CreationDate;
+            command.CommandText = "[dbo].[usp_AddSalary]";
             command.Parameters.Add("Company", SqlDbType.VarChar).Value = record.Company;
             command.Parameters.Add("Position", SqlDbType.VarChar).Value = record.Position;
             command.Parameters.Add("Salary", SqlDbType.Int).Value = record.Salary;
             command.Parameters.Add("Experience", SqlDbType.Int).Value = record.Experience;
+            // command.Parameters.Add("CreationDate", SqlDbType.DateTime).Value = DateTime.Now();
 
             command.Parameters.Add("returnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             await command.ExecuteNonQueryAsync();

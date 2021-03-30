@@ -6,10 +6,18 @@ namespace LivescoreDAL.Description
     {
         IMatchDAL GetMatchDAL();
 
+        IMatchDAL GetMatchDAL(IBaseDAL parent);
+
         ISeasonDAL GetSeasonDAL();
+
+        ISeasonDAL GetSeasonDAL(IBaseDAL parent);
 
         ISportDAL GetSportDAL();
 
+        ISportDAL GetSportDAL(IBaseDAL parent);
+
         ITeamDAL GetTeamDAL();
+
+        ITeamDAL GetTeamDAL(IBaseDAL parent);
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using LivescoreDAL.Base;
-using LivescoreDAL.Constants;
+﻿using LivescoreDAL.Base;
 using LivescoreDAL.Database;
 using LivescoreDAL.Description;
 using LivescoreDAL.Parameters;
@@ -12,11 +8,7 @@ namespace LivescoreDAL.Factories
     public class DalFactory : Disposable, IDalFactory
     {
         private readonly DatabaseConfiguration configuration;
-        
-        private IBaseDAL baseDAL;
-        private Dictionary<string, IBaseDAL> dals;
-        private Dictionary<string, Func<DatabaseConfiguration, IBaseDAL, IBaseDAL>> initializers;
-        
+
         public DalFactory(DatabaseConfiguration configuration)
         {
             this.configuration = configuration;
@@ -24,70 +16,42 @@ namespace LivescoreDAL.Factories
 
         public IMatchDAL GetMatchDAL()
         {
-            return this.GetDAL(DALs.MatchDAL) as IMatchDAL;
+            return new MatchDAL(this.configuration);
+        }
+
+        public IMatchDAL GetMatchDAL(IBaseDAL parent)
+        {
+            return new MatchDAL(this.configuration, parent);
         }
 
         public ISeasonDAL GetSeasonDAL()
         {
-            return this.GetDAL(DALs.SeasonDAL) as ISeasonDAL;
+            return new SeasonDAL(this.configuration);
+        }
+
+        public ISeasonDAL GetSeasonDAL(IBaseDAL parent)
+        {
+            return new SeasonDAL(this.configuration, parent);
         }
 
         public ISportDAL GetSportDAL()
         {
-            return this.GetDAL(DALs.SportDAL) as ISportDAL;
+            return new SportDAL(this.configuration);
+        }
+
+        public ISportDAL GetSportDAL(IBaseDAL parent)
+        {
+            return new SportDAL(this.configuration, parent);
         }
 
         public ITeamDAL GetTeamDAL()
         {
-            return this.GetDAL(DALs.TeamDAL) as ITeamDAL;
+            return new TeamDAL(this.configuration);
         }
 
-        protected override void Dispose(bool disposing)
+        public ITeamDAL GetTeamDAL(IBaseDAL parent)
         {
-            if (this.disposed)
-                return;
-
-            if (disposing)
-            {
-                foreach (var dal in this.dals.Values)
-                    dal.Dispose();
-
-                this.baseDAL.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        protected override async ValueTask DisposeAsyncCore()
-        {
-            foreach (var dal in this.dals.Values)
-                await dal.DisposeAsync();
-
-            await this.baseDAL.DisposeAsync();
-            await base.DisposeAsync();
-        }
-
-        private IBaseDAL GetDAL(string name)
-        {
-            if (this.dals.TryGetValue(name, out var dal))
-                return dal;
-
-            if (this.initializers == null)
-            {
-                this.initializers = new Dictionary<string, Func<DatabaseConfiguration, IBaseDAL, IBaseDAL>>
-                {
-                    [DALs.MatchDAL] = (c, d) => new MatchDAL(c, d),
-                    [DALs.SeasonDAL] = (c, d) => new SeasonDAL(c, d),
-                    [DALs.SportDAL] = (c, d) => new SportDAL(c, d),
-                    [DALs.TeamDAL] = (c, d) => new TeamDAL(c, d)
-                };
-            }
-
-            var initializer = this.initializers[name];
-            if (this.baseDAL == null)
-                this.baseDAL = initializer.Invoke(this.configuration, null);
-
-            return this.dals[name] = initializer.Invoke(this.configuration, this.baseDAL);
+            return new TeamDAL(this.configuration, parent);
         }
     }
 }

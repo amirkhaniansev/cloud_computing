@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[News]
+(
+	[Id]		INT				NOT NULL IDENTITY (1, 1),
+	[Title]		NVARCHAR(255)	NOT NULL,
+	[Author]	NVARCHAR(255)	NOT NULL,
+	[Category]	NVARCHAR(255)	NOT NULL,
+	[Content]	NVARCHAR(MAX)	NOT NULL,
+	[Created]	DATETIME2		NOT NULL,
+	[FileUrl]	NVARCHAR(MAX),
+
+	CONSTRAINT [PK_NEWS_ID]	PRIMARY KEY ([Id]),
+)
+
+

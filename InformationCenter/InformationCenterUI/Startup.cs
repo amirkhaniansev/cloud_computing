@@ -1,14 +1,10 @@
 using InformationCenterUI.HttpClients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InformationCenterUI
 {
@@ -27,6 +23,7 @@ namespace InformationCenterUI
             services.AddControllersWithViews();
             services.AddHttpClient<TrafficJamClient>(client => client.BaseAddress = new Uri(Configuration["APIs:TrafficJamsBaseUrl"]));
             services.AddHttpClient<FilmClient>(client => client.BaseAddress = new Uri(Configuration["APIs:FilmsBaseUrl"]));
+            services.AddHttpClient<NewsClient>(client => client.BaseAddress = new Uri(Configuration["APIs:NewsBaseUrl"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

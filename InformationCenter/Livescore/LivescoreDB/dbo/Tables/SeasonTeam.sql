@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[SeasonTeam]
+(
+	[SeasonId]	INT	NOT NULL,
+	[TeamId]	INT	NOT NULL,
+
+	CONSTRAINT [PK_SEASON_TEAM]		PRIMARY KEY ([SeasonId], [TeamId]),
+	CONSTRAINT [FK_SEASON_TEAM_SEASON_ID]	FOREIGN KEY ([SeasonId]) REFERENCES [dbo].[Season]([Id]),
+	CONSTRAINT [FK_SEASON_TEAM_TEAM_ID]	FOREIGN KEY ([TeamId])	 REFERENCES [dbo].[Team]([Id])
+)

@@ -10,7 +10,6 @@ namespace LivescoreAPI.LivescoreGraphQL.Types
             this.Field(m => m.Id);
             this.Field(m => m.StartTime);
             this.Field(m => m.Description);
-            this.Field()
         }
     }
 }

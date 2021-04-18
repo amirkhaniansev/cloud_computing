@@ -1,0 +1,6 @@
+﻿
+<form asp-controller="Films" asp-action="AddTrailer" method="post" enctype="multipart/form-data">
+    <input name="trailerFile" type="file" />
+    @*<input name="filmId" value="@ViewBag.Id" />*@
+    <button class="btn btn-primary" type="submit" asp-route-id="@ViewBag.Id">Add</button>
+</form>

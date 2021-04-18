@@ -1,9 +1,7 @@
 ﻿using InformationCenterUI.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,7 +13,6 @@ namespace InformationCenterUI.HttpClients
         public readonly HttpClient client;
         public TrafficJamClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://informationcenter.azurewebsites.net/api/");
             this.client = client;
         }
         public async Task<int> PostTrafficJam(TrafficJam jam)

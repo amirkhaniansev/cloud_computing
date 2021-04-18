@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[Film]
-(
-	[Id]		INT	IDENTITY(1, 1) NOT NULL PRIMARY KEY,
-	[Name]		NVARCHAR(255) NOT NULL,
-	[Stars]		NVARCHAR(500),
-	[Category]	NVARCHAR(50) NOT NULL, 
-    [Cinema]	NVARCHAR(255) NOT NULL
-)

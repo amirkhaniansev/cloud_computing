@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "TrafficJamsAPI.Proto";
+import "google/protobuf/timestamp.proto";
+
+message Address{
+	string address = 1;
+	google.protobuf.Timestamp date_time = 2;
+}
+message Response{
+	bool response = 1;
+}
+
+service TrafficJams{
+	rpc CheckJam(Address) returns (Response);
+}

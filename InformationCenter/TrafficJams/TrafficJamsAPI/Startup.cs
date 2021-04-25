@@ -32,6 +32,7 @@ namespace TrafficJamsAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TrafficJamsAPI", Version = "v1" });
             });
+            services.AddGrpc(option => option.EnableDetailedErrors = true);           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +50,10 @@ namespace TrafficJamsAPI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<GRPCSeriveces.GrpcTrafficJamService>();
                 endpoints.MapControllers();
             });
+
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using FilmsAPI.Models;
+using Google.Protobuf.WellKnownTypes;
+using Grpc.Net.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using TrafficJamsAPI.Proto;
 
 namespace InformationCenter.Controllers
 {
@@ -40,9 +44,20 @@ namespace InformationCenter.Controllers
                     Name = reader.GetString("Name"),
                     Stars = reader.GetString("Stars"),
                     Category = reader.GetString("Category"),
-                    Cinema = reader.GetString("Cinema")
+                    Cinema = reader.GetString("Cinema"),
+                    CinemaAddress = reader.GetString("CinemaAddress")
                 };
+
                 list.Add(film);
+            }
+            //GrpcChannel channel = GrpcChannel.ForAddress("https://informationcenter.azurewebsites.net/");
+            GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001/");
+            TrafficJams.TrafficJamsClient client = new TrafficJams.TrafficJamsClient(channel);
+            Response res;
+            foreach (var item in list)
+            {
+                res = await client.CheckJamAsync(new Address { Address_ = item.CinemaAddress, DateTime = Timestamp.FromDateTime(DateTime.UtcNow) });
+                item.IsJam = res.Response_;
             }
             return list;
         }
@@ -142,6 +157,8 @@ namespace InformationCenter.Controllers
 
             return CreatedAtAction(nameof(Delete), new { id = idd }, idd);
         }
+
+       
 
     }
 }

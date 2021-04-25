@@ -11,5 +11,7 @@
         public string Category { get; set; }
 
         public string Cinema { get; set; }
+        public string CinemaAddress { get; set; }
+        public bool IsJam  { get; set; }
     }
 }

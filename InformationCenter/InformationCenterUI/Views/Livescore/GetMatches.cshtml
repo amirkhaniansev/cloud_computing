@@ -1,0 +1,21 @@
+﻿@model List<Match>
+@if (@Model.Count != 0)
+{
+    @foreach (var item in @Model)
+    {
+<div class=" row">
+    <div class=" col">@item.Id</div>
+    <div class=" col">@item.HomeTeamId</div>
+    <div class=" col">@item.AwayTeamId</div>
+    <div class=" col">@item.SeasonId</div>
+    <div class=" col">@item.Description</div>
+    <div class=" col">@item.StartTime</div>
+    <div class=" col">@item.Created</div>
+    <div class=" col">@item.Modified</div>
+</div>
+    }
+}
+else
+{
+    <label>Matches not exists.</label>
+}

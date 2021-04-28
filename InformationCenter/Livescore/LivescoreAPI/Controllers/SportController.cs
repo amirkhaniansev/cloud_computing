@@ -45,7 +45,7 @@ namespace LivescoreAPI.Controllers
             using var sportDal = this.factory.GetSportDAL();
             if (sport.OriginCountryId.HasValue)
             {
-                var originCountry = await sportDal.Find<Sport>(sport.OriginCountryId.Value);
+                var originCountry = await sportDal.Find<Country>(sport.OriginCountryId.Value);
                 if (originCountry == null)
                     throw this.NotFound(Errors.CountryNotFound);
             }

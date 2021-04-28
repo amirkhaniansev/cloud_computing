@@ -40,7 +40,7 @@ namespace LivescoreAPI
                     }));
 
             services.AddScoped<LivescoreScheme>();
-            services.AddGraphQL()
+            services.AddGraphQL(o => o.EnableMetrics = true)
                     .AddSystemTextJson()
                     .AddNewtonsoftJson()
                     .AddGraphTypes(ServiceLifetime.Scoped);

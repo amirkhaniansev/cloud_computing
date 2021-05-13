@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TrafficJamsAPI.Models;
 using Microsoft.SqlServer.Types;
+//using Azure.Messaging.ServiceBus;
+using System.Text.Json;
+using Microsoft.Azure.ServiceBus;
+using Azure.Messaging.ServiceBus;
+using System;
+using System.Text;
 
 namespace InformationCenter.Controllers
 {
@@ -14,10 +20,13 @@ namespace InformationCenter.Controllers
     public class TrafficJamsController : ControllerBase
     {
         private readonly string connectionString;
-
+        private readonly string connectionStringBus;
+        private readonly string queueName;
         public TrafficJamsController(IConfiguration configuration)
         {
             this.connectionString = configuration.GetConnectionString("TrafficJamsDB");
+            this.connectionStringBus = configuration.GetConnectionString("ServiceBusCnn");
+            this.queueName = configuration.GetConnectionString("QueueName"); 
         }
 
         [HttpGet]
@@ -132,7 +141,31 @@ namespace InformationCenter.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = idd }, idd);
         }
-        
+        [HttpPut("{id}")]
+        public async Task Put(int id, [FromBody] TrafficJam jam)
+        {
+            using var connection = new SqlConnection(this.connectionString);
+            using var command = new SqlCommand();
+            await connection.OpenAsync();
+
+            command.Connection = connection;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "Update [dbo].[TrafficJam] Set [Degree] = @degree Where [Id] = @id";
+            command.Parameters.Add("@degree", SqlDbType.Int).Value = jam.Degree;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            await command.ExecuteNonQueryAsync();
+
+
+            await using ServiceBusClient busClient = new ServiceBusClient(this.connectionStringBus);
+            //var busClient = new QueueClient(this.connectionStringBus, this.queueName);
+            string json = JsonSerializer.Serialize(jam);
+            ServiceBusMessage busMessage = new ServiceBusMessage(json);
+            Message message = new Message(Encoding.ASCII.GetBytes(json));
+
+            var sender = busClient.CreateSender(this.queueName);
+            await sender.SendMessageAsync(busMessage);
+        }
         private SqlParameter ConstructSqlGeography(string name, Location location)
         {
             var geo = SqlGeography.Point(location.Lattitude, location.Longitude, 4326);

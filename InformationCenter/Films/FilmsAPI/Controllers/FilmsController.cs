@@ -1,6 +1,7 @@
 ﻿using FilmsAPI.Models;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ namespace InformationCenter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FilmsController : ControllerBase
     {
         private readonly string connectionString;
@@ -24,6 +26,7 @@ namespace InformationCenter.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<List<Film>> Get()
         {
             using var connection = new SqlConnection(this.connectionString);

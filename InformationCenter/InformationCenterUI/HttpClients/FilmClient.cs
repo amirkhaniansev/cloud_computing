@@ -4,6 +4,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ namespace InformationCenterUI.HttpClients
     public class FilmClient
     {
         public readonly HttpClient client;
-        public FilmClient(HttpClient client)
+        public readonly TokenClient tokenClient;
+
+        public FilmClient(HttpClient client, TokenClient tokenClient)
         {
             this.client = client;
+            this.tokenClient = tokenClient;
         }
+
         public async Task<int> PostFilm(Film film)
         {
             HttpRequestMessage request = new HttpRequestMessage
@@ -26,6 +31,7 @@ namespace InformationCenterUI.HttpClients
 
                 Content = new StringContent(JsonSerializer.Serialize(film), Encoding.UTF8, "application/json")
             };
+           
             var result = await client.SendAsync(request);
             if (result.IsSuccessStatusCode)
             {
@@ -35,6 +41,7 @@ namespace InformationCenterUI.HttpClients
         }
         public async Task<List<Film>> GetFilms()
         {
+
             HttpRequestMessage request = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
@@ -51,12 +58,14 @@ namespace InformationCenterUI.HttpClients
         }
         public async Task<Film> GetFilmById(int id)
         {
+
+            var token = await tokenClient.GetToken();
             HttpRequestMessage request = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri("Films/"+ id.ToString(), UriKind.Relative),
             };
-            
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var result = await client.SendAsync(request);
             if (result.IsSuccessStatusCode)
             {

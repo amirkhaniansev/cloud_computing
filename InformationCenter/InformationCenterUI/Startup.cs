@@ -27,6 +27,7 @@ namespace InformationCenterUI
             services.AddControllersWithViews();
             services.AddHttpClient<TrafficJamClient>(client => client.BaseAddress = new Uri(Configuration["APIs:TrafficJamsBaseUrl"]));
             services.AddHttpClient<FilmClient>(client => client.BaseAddress = new Uri(Configuration["APIs:FilmsBaseUrl"]));
+            services.AddHttpClient<TokenClient>();
             services.AddScoped<LivescoreGraphQLClient>(client => new LivescoreGraphQLClient(Configuration["APIs:LivescoreBaseUrl"]));
         }
 
